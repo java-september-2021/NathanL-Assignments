@@ -15,20 +15,19 @@ public class AlfredQuotes {
     }
 
     public String respondBeforeAlexis(String conversation) {
+        String respond;
         String alexis = "Alexis";
         String alfred = "Alfred";
         if (conversation.contains(alexis)){
-            String respond = "Right away, sir. She certainly isn't sophisticated enough for that.";
-            return respond;
+            respond ="Right away, sir. She certainly isn't sophisticated enough for that.";
         } else if (conversation.contains(alfred)){
-            String respond = "At your service. As you wish, naturally.";
-            return respond;
+            respond = "At your service. As you wish, naturally.";
         } else{
-            String respond = "Right. And with that I shall retire.";
-            return respond;
+            respond = "Right. And with that I shall retire.";
         }
+            return respond;
     }
-    // Write your own AlfredQuote method using any of the String methods you have learned!
+
     public String brucey (String conversation) {
     String nickname = conversation.replace("Batman", "Brucey");
     return nickname;
