@@ -7,6 +7,7 @@ public class BatTest {
         bat1.eatHumans();
         bat1.eatHumans();
         bat1.fly();
+        bat1.fly();
         bat1.displayEnergy();
     }
 }

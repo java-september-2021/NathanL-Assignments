@@ -1,8 +1,12 @@
 public class Bat extends Mammal{
-
+    private int batEnergy = 300;
     public Bat(int energyLevel){
-		super(energyLevel);
+	this.energyLevel = batEnergy;
 	}
+
+    public Bat(){
+        this.energyLevel = batEnergy;
+        }
 
     public void fly(){
         System.out.println("flap flpa flap");
