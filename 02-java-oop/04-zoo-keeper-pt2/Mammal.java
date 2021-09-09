@@ -1,16 +1,19 @@
 public class Mammal {
-    protected int energyLevel;
-    private int mamalEnergy = 100;
-    public int displayEnergy(){
-        System.out.println(energyLevel);
-        return energyLevel;
-    }
+  protected int energyLevel;
+  private int mamalEnergy = 100;
 
-    public Mammal(int energyLevel) {
-		this.energyLevel = energyLevel;
-    }
+  // constructor
+  public Mammal(int instEnergyLevel) {
+    this.energyLevel = instEnergyLevel;
+  }
 
-    public Mammal() {
-      this.energyLevel = mamalEnergy;
-      }
+  // constructor
+  public Mammal() {
+    this.energyLevel = mamalEnergy;
+  }
+
+  public int displayEnergy() {
+    System.out.println(energyLevel);
+    return this.energyLevel;
+  }
 }
