@@ -5,16 +5,25 @@ public class Galaxy extends Phone implements Ringable {
 
     @Override
     public String ring() {
-        // your code here
+        String ring = getRingTone();
+        String name = getClass().getName();
+        String vers = getVersion();
+        String msg = name + " " + vers + " says " + ring;
+        return msg;
     }
 
     @Override
     public String unlock() {
-        // your code here
+        String msg = "Unlocking via finger print";
+        return msg;
     }
 
     @Override
     public void displayInfo() {
-        // your code here
+        String name = getClass().getName();
+        String vers = getVersion();
+        String carrier = getCarrier();
+        System.out.println(name + " " + vers + " from " + carrier);
+
     }
 }
