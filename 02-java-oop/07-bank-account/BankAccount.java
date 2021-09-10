@@ -23,11 +23,11 @@ public class BankAccount {
     }
 
     public void deposit(String account, int amount) {
-        if (account == "saving") {
+        if (account.equals("savings")) {
             this.savingBalance += amount;
             accountsTotalValue += amount;
             System.out.println("Current saving balance: " + this.savingBalance);
-        } else if (account == "checking") {
+        } else if (account.equals("checking")) {
             this.checkingBalance += amount;
             accountsTotalValue += amount;
             System.out.println("Current checking balance: " + this.checkingBalance);
@@ -37,7 +37,7 @@ public class BankAccount {
     }
 
     public void withdraw(String account, int amount) {
-        if (account == "saving") {
+        if (account.equals("savings")) {
             if (this.savingBalance > amount) {
                 this.savingBalance -= amount;
                 accountsTotalValue -= amount;
@@ -45,7 +45,7 @@ public class BankAccount {
             } else {
                 System.out.println("Insufficient funds!");
             }
-        } else if (account == "checking") {
+        } else if (account.equals("checking")) {
             if (this.savingBalance > amount) {
                 this.checkingBalance -= amount;
                 accountsTotalValue -= amount;
