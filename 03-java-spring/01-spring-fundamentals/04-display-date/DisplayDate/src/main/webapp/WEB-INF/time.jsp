@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class=main>
+<p class="time"><%=currentTime%> PM</p>
 </div>
 </body>
 </html>
