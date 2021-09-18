@@ -1,0 +1,16 @@
+.date {
+	color: blue;
+	text-align: center;
+}
+
+.time {
+	color: green;
+	text-align: center;
+	
+}
+
+.main {
+text-align: center;
+width: 900px;
+border: black 2px solid;
+}
