@@ -34,7 +34,13 @@ public class TheCodeController {
 	}
 
 	@RequestMapping("/code")
-	public String code() {
-		return "code.jsp";
+	public String code(HttpSession session, RedirectAttributes redirectAttributes) {
+		if(session.getAttribute("userCode") == null) {
+			redirectAttributes.addFlashAttribute("errors", "You must fill out the form!");
+			return "redirect:/";
+		} else {
+			
+			return "code.jsp";
+		}
 	}
 }
