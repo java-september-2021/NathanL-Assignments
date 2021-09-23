@@ -10,26 +10,29 @@ import javax.persistence.Table;
 @Table(name="albums")
 public class Album {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long Id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String albumName;
 	private String bandName;
 	private Integer year;
 	
-	public Album(Long id, String albumName, String bandName, Integer year) {
+	public Album() {
+		
+	}
+	
+	public Album(String albumName, String bandName, Integer year) {
 		super();
-		Id = id;
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.year = year;
-	}
-
+	}	
+	
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getAlbumName() {
@@ -55,8 +58,6 @@ public class Album {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	
-	
 	
 	
 }

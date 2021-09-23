@@ -12,37 +12,35 @@ import com.nlangione.albums.repositories.AlbumRepository;
 public class AlbumService {
 	@Autowired
 	private AlbumRepository aRepo;
-	
 	/*
 	public AlbumService(AlbumRepository repository) {
-		this.aRepo = repository;
-		
+		this.aRepo =  repository;
 	}
 	*/
-	//get all albums
+	
+	// Get Every Single Album From Database And Return In ArrayList
 	public List<Album> getAllAlbums(){
-		return this.aRepo.findall();
+		return this.aRepo.findAll();
 	}
 	
-	//get one album
+	// Get One Album
 	public Album getOneAlbum(Long id) {
-		return this.aRepo.findById(id).orElse(null);
+		return this.aRepo.findById(id).orElse(null);		
 	}
 	
-	//create an album
+	// Create Album
 	public Album createAlbum(Album album) {
 		return this.aRepo.save(album);
 	}
 	
-	// update album 
+	// Update Album
 	public Album editAlbum(Album album) {
 		return this.aRepo.save(album);
 	}
 	
-	//delete
+	// Delete Album
 	public String deleteAlbum(Long id) {
 		this.aRepo.deleteById(id);
 		return "Album has been deleted";
 	}
-	
 }
