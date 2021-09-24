@@ -25,17 +25,14 @@
 				<td>${language.creator}</td>
 				<td>${language.version}</td>
 				<td> <form action="/languages/${language.id}" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-	</form> <a href="/languages/${language.id}/edit">Edit </a> 
-				
+			    <input type="hidden" name="_method" value="delete">
+			    <input type="submit" value="Delete">
+				</form> 
+				<a href="/languages/${language.id}/edit">Edit </a> 
 			</tr>
 		</c:forEach>
 		</thead>
 	</table>
-	<h1>Create a new Album</h1>
-	<hr>
-	<h3>SpringMVC Forms</h3>
 	<form:form method="POST" action="/languages" modelAttribute="language">
 		<form:label path="name"> Name</form:label>
 		<form:errors path="name"/>
