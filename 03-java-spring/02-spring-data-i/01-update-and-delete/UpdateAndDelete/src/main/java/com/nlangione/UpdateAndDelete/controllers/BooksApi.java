@@ -40,8 +40,8 @@ public class BooksApi {
 		return this.bookService.createBook(book);  
 	}
 	
-	@DeleteMapping("/api/delete/{id}")
-	//@RequestMapping(value="/api/delete/{id}", method=RequestMethod.POST)
+	//@DeleteMapping("/api/delete/{id}")
+	@RequestMapping(value="/api/delete/{id}", method=RequestMethod.POST)
 	public String delete(@PathVariable("id") Long id) {
 		return this.bookService.deleteBook(id);
 	}
