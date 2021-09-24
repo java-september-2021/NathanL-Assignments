@@ -1,4 +1,4 @@
-package com.nlangione.Languages.models;
+package com.nlangione.Languages2.models;
 
 import java.util.Date;
 
@@ -11,6 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,15 +20,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="languages")
 public class Language {
-	    @Id
+	  	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-	    @NotNull
-	    @Size(min = 2, max = 20)
+	  	@NotBlank
+	    @Size(min = 3, max = 20)
 	    private String name;
 	    
-	    @NotNull
-	    @Size(min = 2, max = 20)
+	    @NotBlank
+	    @Size(min = 3, max = 20)
 	    private String creator;
 	    
 	    @NotNull
@@ -61,6 +62,14 @@ public class Language {
 	    protected void onUpdate(){
 	        this.updatedAt = new Date();
 	    }
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
 
 		public String getName() {
 			return name;
@@ -102,5 +111,4 @@ public class Language {
 			this.updatedAt = updatedAt;
 		}
 	    
-	    
-	}
+}

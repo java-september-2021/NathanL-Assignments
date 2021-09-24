@@ -1,12 +1,12 @@
-package com.nlangione.Languages.services;
+package com.nlangione.Languages2.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nlangione.Languages.models.Language;
-import com.nlangione.Languages.repositories.LanguageRepository;
+import com.nlangione.Languages2.models.Language;
+import com.nlangione.Languages2.repositories.LanguageRepository;
 
 @Service
 public class LanguageService {
