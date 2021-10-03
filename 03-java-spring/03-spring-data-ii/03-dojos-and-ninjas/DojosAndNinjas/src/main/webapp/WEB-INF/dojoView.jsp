@@ -12,13 +12,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Dojos</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+ 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-	<h1>Dojo view</h1>
-</div>
+	<main>
+		<div class="text-center">
+	 		<h1><c:out value="${dojo.name}"/> Location Ninjas</h1>
+	 		<a href="/dojos">Dojos</a> 
+	 	</div>
+		<div class="container">
+			<table class="table table-striped table-dark">
+		    	<thead>
+		        	<tr>
+		            	<th>First Name</th>
+		            	<th>Last Name</th>
+		            	<th>Age</th>
+		       		</tr>
+		    	</thead>
+		    	<tbody>
+		        	<c:forEach items="${dojo.ninjas}" var="ninja">
+		        	<tr>
+		            	<td><c:out value="${ninja.firstName}"/></td>
+		            	<td><c:out value="${ninja.lastName}"/></td>
+		            	<td><c:out value="${ninja.age}"/></td>	
+		        	</tr>
+		        	</c:forEach>
+		    	</tbody>
+			</table>
+		</div>
+	</main>
 </body>
 </html>
 

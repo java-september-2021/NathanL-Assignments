@@ -13,25 +13,37 @@
     <meta charset="UTF-8">
     <title>Dojos</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-	<table class="table table-striped table-dark">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Show</th>
-			</tr>
-			<c:forEach items="${allDojos}" var="dojo">
-			<tr>
-				<td>${language.Name}</td>
-				<td><a href="/dojos/${dojo.id}">View Dojo</a></td>
-			</tr>
-		</c:forEach>
-		</thead>
-	</table>
-</div>
+	<main>
+		<div class="text-center">
+	 		<h1>All Dojos</h1>
+	 		<a href="/dojos/new">New Dojo</a> | <a href="/ninjas/new">New Ninja</a> 
+	 	</div>
+		<div class="container">
+			<table class="table table-striped table-dark">
+			<thead>
+	        	<tr>
+	            	<th>Name</th>
+	            	<th>Action</th>
+	       		</tr>
+    		</thead>
+	    		<tbody>
+		        	<c:forEach items="${allDojos}" var="dojo">
+		        	<tr>
+		            	<td><c:out value="${dojo.name}"/></td>
+		            	<td> 
+		            		<a href="/dojos/${dojo.id}">Show</a>
+		            	</td>
+		        	</tr>
+		        	</c:forEach>
+			    </tbody>
+			</table>
+		</div>
+	</main>
 </body>
 </html>
 

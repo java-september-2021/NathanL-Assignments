@@ -13,14 +13,26 @@
     <meta charset="UTF-8">
     <title>New Dojo</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <div class="container">
-	<h1>New Dojo</h1>
-</div>
+	<main>
+		<div class="text-center">
+	 		<h1>New Dojo</h1>
+	 		<a href="/dojos">Dojos</a> 
+	 	</div>
+		<div class="text-center">
+			<form:form method="POST" action="/dojos/new" modelAttribute="dojo">
+				<form:label path="name"> Name</form:label>
+				<form:errors path="name"/>
+				<form:input type="text" path="name"/>
+				<br>
+				<p><button>Create</button>
+			</form:form>
+		</div>
+	</main>
 </body>
 </html>
 

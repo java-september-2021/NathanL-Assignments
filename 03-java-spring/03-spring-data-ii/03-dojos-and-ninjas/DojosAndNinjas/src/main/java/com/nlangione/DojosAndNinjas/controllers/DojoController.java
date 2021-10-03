@@ -22,7 +22,10 @@ public class DojoController {
     private DojoService aService;
 	
 	
-	
+	@GetMapping("")
+	public String root() {
+		return "redirect:/dojos";
+	}
 	@GetMapping("/dojos")
     public String index(@ModelAttribute("dojo") Dojo dojo, Model viewModel) {
     	viewModel.addAttribute("allDojos", this.aService.getAllDojos());
@@ -50,12 +53,14 @@ public class DojoController {
 	}
 	
 	@GetMapping("/ninjas/new")
-    public String newNinja(@ModelAttribute("ninja") Ninja ninja){
+    public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model viewModel){
+		viewModel.addAttribute("allDojos", this.aService.getAllDojos());
     	return "newNinja.jsp";
     }
 	
 	@PostMapping("/ninjas/new")
-	public String addNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+	public String addNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result, Model viewModel){
+		viewModel.addAttribute("allDojos", this.aService.getAllDojos());
 		if(result.hasErrors()) {
 			return "newNinja.jsp";
 		}
