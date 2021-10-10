@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nlangione.albums.models.Album;
+import com.nlangione.albums.models.User;
 import com.nlangione.albums.repositories.AlbumRepository;
 
 @Service
@@ -42,5 +43,19 @@ public class AlbumService {
 	public String deleteAlbum(Long id) {
 		this.aRepo.deleteById(id);
 		return "Album has been deleted";
+	}
+	
+	// Like an Album
+	public void likeAlbum(User user, Album album) {
+		List<User> usersWhoLiked = album.getLikers();
+		usersWhoLiked.add(user);
+		this.aRepo.save(album);
+	}
+	
+	// unLike an Album
+	public void unlikeAlbum(User user, Album album) {
+		List<User> usersWhoLiked = album.getLikers();
+		usersWhoLiked.remove(user);
+		this.aRepo.save(album);
 	}
 }

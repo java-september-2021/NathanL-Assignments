@@ -1,5 +1,6 @@
 package com.nlangione.albums.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +14,63 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nlangione.albums.models.Album;
+import com.nlangione.albums.models.User;
 import com.nlangione.albums.services.AlbumService;
+import com.nlangione.albums.services.UserService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private AlbumService aService;
+	@Autowired
+	private UserService uService;
 	
 	@GetMapping("/")
-	public String index(Model viewModel) {
+	public String landing(@ModelAttribute) {
+		viewModel.addAttribute("allUsers", this.uService.getAllUsers());
+		return "landing.jsp";
+	}	
+	
+	@PostMapping("/login")
+	public String login(HttpSession session, @RequestParam("usersToLogin") Long userid) {
+		session.setAttribute("user__id", userid);
+		return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping("/dashboard")
+	public String index(Model viewModel, HttpSession session) {
+		if(session.getAttribute("user__id") == null) {
+			return "redirect:/";
+		}
+		viewModel.addAttribute("user", this.uService.getOneUser((Long)session.getAttribute("user__id")));
 		viewModel.addAttribute("allAlbums", this.aService.getAllAlbums());
 		return "index.jsp";
+	}	
+	
+	@GetMapping("/like/{id}")
+	public String like(@PathVariable("id") Long id, HttpSession session) {
+		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id"));
+		Album albumToLike = this.aService.getOneAlbum(id);
+		// add them together
+		this.aService.likeAlbum(userToLikeAlbum, albumToLike);
+		return "redirect:/dashboard";
 	}
+	
+	@GetMapping("/unlike/{id}")
+	public String unlike(@PathVariable("id") Long id, HttpSession session) {
+		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id"));
+		Album albumTounLike = this.aService.getOneAlbum(id);
+		// add them together
+		this.aService.unlikeAlbum(userToLikeAlbum, albumTounLike);
+		return "redirect:/dashboard";
+	}
+	
 	
 	@GetMapping("/new")
 	public String add(@ModelAttribute("album") Album album) {
@@ -37,7 +83,7 @@ public class HomeController {
 			return "add.jsp";
 		}
 		this.aService.createAlbum(album);
-		return "redirect:/";
+		return "redirect:/dashboard";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -53,14 +99,20 @@ public class HomeController {
 			return "edit.jsp";
 		}
 		this.aService.editAlbum(album);
-		return "redirect:/";
+		return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/details/{id}")
+	public String show(@PathVariable("id") Long id, Model viewModel) {
+		viewModel.addAttribute("albumDetails", this.aService.getOneAlbum(id));
+		return "show.jsp";
 	}
 	
 	@PostMapping("/htmladd")
 	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Integer year) {
 		Album albumToSave = new Album(album, band, year);
 		this.aService.createAlbum(albumToSave);
-		return "redirect:/";
+		return "redirect:/dashboard";
 	}
 	
 

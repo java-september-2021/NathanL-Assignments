@@ -10,4 +10,6 @@ import com.nlangione.albums.models.Album;
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Long>{
 	List<Album> findAll(); // SELECT * FROM albums
+	List<Album> findByAlbumNameContaining(String containing);
+	boolean existsByAlbumName(String albumName);
 }
