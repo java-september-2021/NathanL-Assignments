@@ -21,7 +21,7 @@ public class DojoService {
 	private NinjaRepository ninjaRepo;
 	
 	// Get Every Single Ninja From Database And Return In ArrayList
-	public List<Ninja> gtrAllNinjas(){
+	public List<Ninja> getAllNinjas(){
 		return this.ninjaRepo.findAll();
 	}
 	
