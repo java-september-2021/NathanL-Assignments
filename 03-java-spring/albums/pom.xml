@@ -8,7 +8,7 @@
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.matthew.albums</groupId>
+	<groupId>com.nlangione.albums</groupId>
 	<artifactId>albums</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>albums</name>

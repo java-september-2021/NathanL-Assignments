@@ -23,8 +23,24 @@ public class UserService {
 	}
 	
 	public User registerUser(User user) {
+		// Generate the hash
 		String hash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-		user.setPassword(hash);;
+		//set hash pw to users password field
+		user.setPassword(hash);
+		//save new user pw and user object to db
 		return this.uRepo.save(user);
+	}
+	
+	public boolean authenticateUser(String email, String password) {
+		User user = this.uRepo.findByEmail(email);
+		
+		if(user == null) {
+			return false;
+		}	
+		return BCrypt.checkpw(password, user.getPassword());
+	}
+	
+	public User getUserByEmail(String email) {
+		return this.uRepo.findByEmail(email);
 	}
 }

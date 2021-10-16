@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "t" tagdir = "/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +11,9 @@
 <title>Welcome To Records dot Com</title>
 </head>
 <body>
-<div class="container">
-<h3>Hi ${user.firstName}</h3>
-<h1>Welcome To Records dot Com</h1>
-<hr>
-<a href="/new">Add An Album</a> | <a href="/song/new">Add A New Song</a>
+ <!-- begin tag insert --> 
+<t:wrapper>
+<h3> Welcome ${user.firstName} ${user.lastName}</h3>
 <table class="table table-striped table-dark">
 <thead>
 <tr>
@@ -21,6 +21,7 @@
 <th>Album Name</th>
 <th>Band Name</th>
 <th>Year</th>
+<th>Year Bought</th>
 <th>Action
 </tr>
 <c:forEach items="${allAlbums}" var="album">
@@ -29,6 +30,7 @@
 <td><a href="/details/${album.id}">${album.albumName}</a></td>
 <td>${album.bandName}</td>
 <td>${album.year}</td>
+<td>${album.yearBought}</td>
 <td>
 <c:choose>
 <c:when test="${album.likers.contains(user)}">
@@ -38,21 +40,12 @@
 <a href="/like/${album.id}">Like</a>
 </c:otherwise>
 </c:choose>
-
-
-
-
-
-
 </td>
 </tr>
 </c:forEach>
-
-
 </thead>
-
 </table>
-
-</div>
+ <!-- end tag insert --> 
+</t:wrapper>
 </body>
 </html>

@@ -17,15 +17,26 @@
 <hr>
 <h3>SpringMVC Forms</h3>
 <form:form method="POST" action="/new" modelAttribute="album">
+	<div class="nav-links">
 	<form:label path="albumName">Album Name</form:label>
 	<form:errors path="albumName"/>
 	<form:input type="text" path="albumName"/>
+	</div>
+	<div class="nav-links">
 	<form:label path="bandName">Band Name</form:label>
 	<form:errors path="bandName"/>
 	<form:input type="text" path="bandName"/>
+	</div>
+	<div class="nav-links">
 	<form:label path="year">Year</form:label>
 	<form:errors path="year"/>
 	<form:input type="text" path="year"/>
+	</div>
+	<div class="nav-links">
+	<form:label path="yearBought">Year bought</form:label>
+	<form:errors path="yearBought"/>
+	<form:input type="date" path="yearBought"/>
+	</div>
 	<p><button>Create Album</button>
 </form:form>
 <hr>
@@ -37,6 +48,8 @@
 <input name="bandName" type="text">
 <p>Release Year:</p>
 <input name="year" type="text">
+<p>Year Bought:</p>
+<input name="yearBought" type="Date">
 <button>Add Album</button>
 </form>
 </div>

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,6 +39,9 @@ public class Album {
 	@NotNull
 	@Min(1700)
 	private Integer year;
+	@Past
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date yearBought;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyy-MM-DD HH:mm:ss")
 	private Date createdAt;
@@ -54,6 +59,10 @@ public class Album {
 	)
 	private List<User> likers;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User owner;
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -68,10 +77,11 @@ public class Album {
 		
 	}
 
-	public Album(String albumName, String bandName, Integer year) {
+	public Album(String albumName, String bandName, Integer year, Date yearBought) {
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.year = year;
+		this.yearBought = yearBought;
 	}
 
 	public Long getId() {
@@ -106,6 +116,14 @@ public class Album {
 		this.year = year;
 	}
 
+	public Date getYearBought() {
+		return yearBought;
+	}
+
+	public void setYearBought(Date yearBought) {
+		this.yearBought = yearBought;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -126,6 +144,10 @@ public class Album {
 		return songs;
 	}
 
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
+
 	public List<User> getLikers() {
 		return likers;
 	}
@@ -134,9 +156,13 @@ public class Album {
 		this.likers = likers;
 	}
 
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
+	public User getOwner() {
+		return owner;
 	}
-	
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
 	
 }
